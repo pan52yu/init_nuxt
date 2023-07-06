@@ -1,8 +1,8 @@
 ## learn Nuxt
 
-### 路由
+### 路由 Routing
 
-> https://nuxt.com/docs/guide/going-further/custom-routing#router-options
+> https://nuxt.com/docs/getting-started/routing
 
 1. 配置路由
 
@@ -54,7 +54,7 @@ export default <RouterConfig>{
 - 使用路由器配置会覆盖 Nuxt.js 自动生成的路由配置。
 - 如果返回 null 或 undefined，Nuxt.js 将使用自动生成的路由配置。
 
-### 组件
+### 组件 Components
 
 > https://nuxt.com/docs/guide/directory-structure/components#components-directory
 
@@ -69,7 +69,7 @@ export default <RouterConfig>{
 
 > todo...
 
-### 布局
+### 布局 Layouts
 
 > https://nuxt.com/docs/guide/directory-structure/layouts
 
@@ -139,7 +139,7 @@ const title = ref("Hello World")
 - ......
 - 更多用法参考官网
 
-### 静态资源
+### 静态资源 Assets
 
 > https://nuxt.com/docs/getting-started/assets
 
@@ -163,7 +163,7 @@ const title = ref("Hello World")
     ```
   - assets 下的文件会被 webpack 处理
 
-### 配置
+### 配置 Configuration
 
 > https://nuxt.com/docs/getting-started/configuration
 
@@ -195,3 +195,38 @@ const title = ref("Hello World")
     NUXT_PUBLIC_BASE_URL = "https://bilibili.com"
     // 会覆盖 runtimeConfig 中的配置
     ```
+
+### 获取数据 Data fetching
+
+> https://nuxt.com/docs/getting-started/data-fetching
+
+- useFetch
+  - > https://nuxt.com/docs/api/composables/use-fetch
+  - ```ts
+    <script setup>const {(data, error)} = await useFetch('/api/count')</script>
+    ```
+- useAsyncData
+  - > https://nuxt.com/docs/api/composables/use-async-data
+  - ```ts
+    const { data, error } = await useAsyncData("users", () => myGetFunction("users"))
+    ```
+
+> `useFetch` 接收 URL 并获取该数据，而 useAsyncData 可能具有更复杂的逻辑。 `useFetch(url)` 几乎等同于 `useAsyncData(url, () => $fetch(url))` - 它是最常见用例的开发人员体验糖。
+
+- useLazyFetch / useLazyAsyncData
+  - > https://nuxt.com/docs/api/composables/use-lazy-fetch
+  - > https://nuxt.com/docs/api/composables/use-lazy-async-data
+  - ```ts
+    const { pending, data: posts } = useLazyFetch("/api/posts")
+    ```
+- 添加 lazy 属性
+  - ```ts
+          <script setup>
+          const { pending, data: posts } = useFetch('/api/posts', {
+            lazy: true
+          })
+          </script>
+    ```
+
+> - 默认情况下，客户端页面会在数据请求完毕后再进行渲染。
+> - 如果添加了 lazy 属性，客户端页面会在数据请求之前进行渲染，然后在数据请求完毕后再次渲染。
