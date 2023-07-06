@@ -10,4 +10,10 @@ export default defineNuxtConfig({
       meta: [{ name: "description", content: "My amazing site." }],
     },
   },
+  runtimeConfig: {
+    apiSecret: "123",
+    public: {
+      baseURL: "http://localhost:3000",
+    },
+  },
 })

@@ -138,3 +138,60 @@ const title = ref("Hello World")
 
 - ......
 - 更多用法参考官网
+
+### 静态资源
+
+> https://nuxt.com/docs/getting-started/assets
+
+- `public` 文件夹下的文件会被映射到根路径 `/` 下
+
+  - 例如 引用 `public/img` 下的图片，可以使用 `/img/xxx.png` 进行引用
+  - ```vue
+    <template>
+      <img src="/img/nuxt.png" alt="Discover Nuxt 3" />
+    </template>
+    ```
+  - public 下的文件不会被 webpack 处理
+
+- `assets` 文件夹下的文件会被 webpack 处理
+
+  - 例如 引用 `assets/img` 下的图片，可以使用 `~/assets/img/xxx.png` 进行引用
+  - ```vue
+    <template>
+      <img src="~/assets/img/nuxt.png" alt="Discover Nuxt 3" />
+    </template>
+    ```
+  - assets 下的文件会被 webpack 处理
+
+### 配置
+
+> https://nuxt.com/docs/getting-started/configuration
+
+- runtimeConfig
+
+  - 在 nuxt.config.js 中配置
+
+    - ```ts
+      export default defineNuxtConfig({
+        runtimeConfig: {
+          apiSecret: "123", // 仅在服务器端可用
+          public: {
+            // 在客户端和服务器端都可用
+            baseURL: "http://localhost:3000",
+          },
+        },
+      })
+      ```
+
+  - 在 vue 组件中使用
+    - ```ts
+      <script setup>const runtimeConfig = useRuntimeConfig()</script>
+      ```
+
+- env 文件
+
+  - 在根目录下创建 `.env` 文件
+  - ```ts
+    NUXT_PUBLIC_BASE_URL = "https://bilibili.com"
+    // 会覆盖 runtimeConfig 中的配置
+    ```

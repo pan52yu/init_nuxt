@@ -1,5 +1,8 @@
 <script lang="ts" setup>
 const layout = "default"
+const runtimeConfig = useRuntimeConfig()
+console.log("apiSecret", runtimeConfig.apiSecret)
+console.log("baseURL", runtimeConfig.public.baseURL)
 </script>
 
 <template>
