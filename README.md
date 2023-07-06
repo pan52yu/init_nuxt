@@ -2,6 +2,8 @@
 
 ### 路由
 
+> https://nuxt.com/docs/guide/going-further/custom-routing#router-options
+
 1. 配置路由
 
 - 在 pages 文件夹下创建对应的文件夹和文件
@@ -51,3 +53,34 @@ export default <RouterConfig>{
 - 这是指定路由器的推荐方法，因为它允许您使用 Vue Router 的所有功能，例如路由参数，嵌套路由，命名视图等。
 - 使用路由器配置会覆盖 Nuxt.js 自动生成的路由配置。
 - 如果返回 null 或 undefined，Nuxt.js 将使用自动生成的路由配置。
+
+### 组件
+
+> https://nuxt.com/docs/guide/directory-structure/components#components-directory
+
+1. 组件的创建
+
+- 在 components 文件夹下创建组件
+- 在页面中使用 `<component-name></component-name>` 使用组件
+- 在 components 文件夹下的组件会被自动注册为全局组件
+- 用法和 vue 一样
+
+2. 组件的传值
+
+> todo...
+
+### 布局
+
+> https://nuxt.com/docs/guide/directory-structure/layouts
+
+- 在 layouts 文件夹下创建布局文件
+- 在 app.vue 是中使用
+  - ```html
+    <template>
+      <NuxtLayout>
+        <NuxtPage />
+      </NuxtLayout>
+    </template>
+    ```
+
+> 如果只有一个布局，可以直接在 app.vue 中写，不需要在 layouts 文件夹下创建布局文件
