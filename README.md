@@ -84,3 +84,57 @@ export default <RouterConfig>{
     ```
 
 > 如果只有一个布局，可以直接在 app.vue 中写，不需要在 layouts 文件夹下创建布局文件
+
+### SEO
+
+> https://nuxt.com/docs/getting-started/seo-meta
+
+- 在 `nuxt.config.js` 中配置
+
+```ts
+// https://nuxt.com/docs/api/configuration/nuxt-config
+export default defineNuxtConfig({
+  app: {
+    head: {
+      title: "Evan_Sky",
+      meta: [{ name: "description", content: "My amazing site." }],
+    },
+  },
+})
+```
+
+- 在 vue 组件中配置
+
+```ts
+<script setup>
+useHead({
+  title: 'Evan_Sky',
+  meta: [
+    { name: 'description', content: 'My amazing site.' }
+  ]
+})
+</script>
+```
+
+- 预定义组件
+
+```vue
+<script setup>
+const title = ref("Hello World")
+</script>
+
+<template>
+  <div>
+    <Head>
+      <Title>{{ title }}</Title>
+      <Meta name="description" :content="title" />
+      <Style type="text/css" children="body { background-color: green; }" />
+    </Head>
+
+    <h1>{{ title }}</h1>
+  </div>
+</template>
+```
+
+- ......
+- 更多用法参考官网

@@ -4,4 +4,10 @@ export default defineNuxtConfig({
   typescript: {
     shim: false,
   },
+  app: {
+    head: {
+      title: "Evan_Sky",
+      meta: [{ name: "description", content: "My amazing site." }],
+    },
+  },
 })
